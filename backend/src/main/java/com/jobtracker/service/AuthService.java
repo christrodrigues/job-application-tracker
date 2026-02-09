@@ -15,6 +15,7 @@ import com.jobtracker.entity.User;
 import com.jobtracker.repository.RoleRepository;
 import com.jobtracker.repository.UserRepository;
 
+@Service
 public class AuthService {
 
     @Autowired

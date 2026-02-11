@@ -62,8 +62,9 @@ public class SecurityConfig {
                 .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Allow auth endpoints
-                        .requestMatchers("/api/test/**").permitAll() // Allow test endpoints
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/test/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Swagger
                         .anyRequest().authenticated()); // all other endpoints require authentication
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

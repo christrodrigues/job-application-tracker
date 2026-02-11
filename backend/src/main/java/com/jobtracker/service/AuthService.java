@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jobtracker.entity.ERole;
 import com.jobtracker.entity.Role;
 import com.jobtracker.entity.User;
+import com.jobtracker.exception.CustomExceptions;
 import com.jobtracker.repository.RoleRepository;
 import com.jobtracker.repository.UserRepository;
 
@@ -39,12 +40,12 @@ public class AuthService {
     public String registerUser(SignupRequest signupRequest) {
         // Check if username already exists
         if (userRepository.existsByUsername(signupRequest.getUsername())) {
-            throw new RuntimeException("Error: Username is already taken!");
+            throw new CustomExceptions.DuplicateResourceException("User", "username", signupRequest.getUsername());
         }
 
         // Check if email already exists
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
-            throw new RuntimeException("Error: Email is already in use!");
+            throw new CustomExceptions.DuplicateResourceException("User", "email", signupRequest.getEmail());
         }
 
         // Create new user account
@@ -57,7 +58,7 @@ public class AuthService {
         // Assign default role (ROLE_USER)
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                .orElseThrow(() -> new RuntimeException("Error: Role not found."));
+                .orElseThrow(() -> new CustomExceptions.ResourceNotFoundException("Role", "name", "ROLE_USER"));
         roles.add(userRole);
 
         user.setRoles(roles);

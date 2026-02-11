@@ -13,15 +13,21 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * AuthController
- * Day 3: Authentication endpoints
+ * Day 3-4: Authentication endpoints with Swagger documentation
  * 
  * Public endpoints for login and signup
  */
+@Tag(name = "Authentication", description = "Authentication endpoints for login and signup")
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -40,6 +46,11 @@ public class AuthController {
      * POST /api/auth/login
      * Authenticate user and return JWT token
      */
+    @Operation(summary = "Login user", description = "Authenticate user and return JWT token")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully authenticated"),
+            @ApiResponse(responseCode = "401", description = "Invalid credentials")
+    })
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         // Authenticate username and password
@@ -73,6 +84,12 @@ public class AuthController {
      * POST /api/auth/signup
      * Register new user account
      */
+    @Operation(summary = "Register new user", description = "Create a new user account")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User registered successfully"),
+            @ApiResponse(responseCode = "400", description = "Username or email already exists"),
+            @ApiResponse(responseCode = "409", description = "Duplicate username or email")
+    })
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         try {
@@ -87,6 +104,10 @@ public class AuthController {
      * GET /api/auth/test
      * Test endpoint to verify auth routes work
      */
+    @Operation(summary = "Test authentication endpoints", description = "Simple test endpoint to verify auth routes are working")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Auth endpoints are working")
+    })
     @GetMapping("/test")
     public ResponseEntity<?> test() {
         return ResponseEntity.ok(new MessageResponse("Auth endpoints are working!"));

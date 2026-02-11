@@ -4,7 +4,7 @@ import com.jobtracker.dto.JobApplicationDTOs.*;
 import com.jobtracker.entity.ApplicationStatus;
 import com.jobtracker.entity.JobApplication;
 import com.jobtracker.entity.User;
-import com.jobtracker.exception.CustomExceptions.*;
+import com.jobtracker.exception.CustomExceptions;
 import com.jobtracker.repository.JobApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -93,8 +93,8 @@ public class JobApplicationService {
      */
     public JobApplication getApplicationById(Long id, User user) {
         return jobApplicationRepository.findByIdAndUserAndDeletedFalse(id, user)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Application not found with id: " + id));
+                .orElseThrow(() -> new CustomExceptions.ResourceNotFoundException(
+                        "JobApplication", "id", id));
     }
 
     /**

@@ -146,22 +146,32 @@ During a job search, keeping track of multiple applications can be overwhelming.
 ### Dashboard
 
 ![Dashboard](screenshots/dashboard.png)
-_Main dashboard showing statistics and application list_
+_Main dashboard showing real-time statistics and application management_
+
+### Statistics Cards
+
+![Statistics](screenshots/statistics.png)
+_Analytics dashboard with color-coded status counts_
 
 ### Application Form
 
 ![Create Application](screenshots/create-form.png)
-_Modal form for creating/editing applications_
+_Modal form for creating and editing job applications_
+
+### Search & Filter
+
+![Search and Filter](screenshots/dashboard.png)
+_Powerful search and filter capabilities to find applications quickly_
 
 ### Login Page
 
 ![Login](screenshots/login.png)
-_User authentication page_
+_Secure authentication with JWT tokens_
 
-### Statistics
+### Signup Page
 
-![Statistics](screenshots/statistics.png)
-_Real-time analytics dashboard_
+![Signup](screenshots/signup.png)
+_User registration with validation_
 
 ---
 
@@ -781,9 +791,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Your Name**
 
 - GitHub: [@christrodrigues](https://github.com/christrodrigues)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
-- Portfolio: [your-portfolio.com](https://your-portfolio.com)
+- LinkedIn: [Your LinkedIn](https://linkedin.com/in/christrodrigues)
+- Email: rodrigueschrist@gmail.com
 
 **Project Link:** [https://github.com/christrodrigues/job-application-tracker](https://github.com/christrodrigues/job-application-tracker)
 
